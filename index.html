@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"> <!--/ định dạng ký tự /-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!--/ cho trang hiển thị đúng trên mọi thiết bị /-->
+  <title>Elya STC – Smart Thinking Companion</title>
+  <meta name="description" content="Elya STC – AI cảm xúc, nhân cách hóa và sáng tạo."> <!--/ mô tả trang web /-->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet"> <!--/ import font Poppins /-->
+  <style>
+    /* Reset */
+    * { box-sizing: border-box; margin: 0; padding: 0; } /*/ reset CSS: bỏ margin, padding mặc định /*/
+
+    body {
+      font-family: 'Poppins', sans-serif; /*/ font chữ chính /*/
+      background-color: #000; /*/ màu nền đen /*/
+      color: #f5f5f5; /*/ màu chữ sáng /*/
+      scroll-behavior: smooth; /*/ cuộn mượt /*/
+      border: 2px solid #ffca28; /*/ viền vàng nhẹ /*/
+      animation: glow-border 10s ease-in-out infinite alternate; /*/ hiệu ứng viền phát sáng luân phiên /*/
+    }
+
+    @keyframes glow-border { /*/ hiệu ứng phát sáng cho viền /*/
+      0% { box-shadow: 0 0 10px #ffca28; } /*/ phát sáng nhẹ lúc đầu /*/
+      100% { box-shadow: 0 0 25px #ffd54f, 0 0 50px #ffca28; } /*/ tăng độ sáng ở cuối /*/
+    }
+
+    /* Header */
+    .navbar {
+      position: fixed; /*/ cố định trên đầu /*/
+      top: 0; /*/ đặt ở đỉnh /*/
+      width: 100%; /*/ chiếm toàn bộ chiều ngang /*/
+      background: rgba(20, 20, 20, 0.9); /*/ nền đen trong suốt nhẹ /*/
+      backdrop-filter: blur(8px); /*/ làm mờ nền phía sau /*/
+      display: flex; /*/ dùng flexbox /*/
+      justify-content: space-between; /*/ giãn đều 2 bên /*/
+      align-items: center; /*/ căn giữa theo chiều dọc /*/
+      padding: 15px 60px; /*/ khoảng cách trong /*/
+      border-bottom: 1px solid rgba(255, 202, 40, 0.4); /*/ viền dưới vàng nhạt /*/
+      z-index: 100; /*/ nổi lên trên cùng /*/
+    }
+
+    .logo {
+      display: flex; /*/ xếp ngang /*/
+      align-items: center; /*/ căn giữa hình và chữ /*/
+    }
+
+    .logo img {
+      height: 45px; /*/ chiều cao logo /*/
+      margin-right: 10px; /*/ khoảng cách với chữ /*/
+    }
+
+    .logo h1 {
+      font-size: 22px; /*/ cỡ chữ tiêu đề /*/
+      color: #ffca28; /*/ màu vàng /*/
+      font-weight: 700; /*/ chữ đậm /*/
+      letter-spacing: 1px; /*/ giãn chữ nhẹ /*/
+    }
+
+    .navbar ul {
+      list-style: none; /*/ bỏ dấu chấm đầu dòng /*/
+      display: flex; /*/ hiển thị ngang /*/
+      gap: 25px; /*/ khoảng cách giữa các mục /*/
+    }
+
+    .navbar a {
+      text-decoration: none; /*/ bỏ gạch chân /*/
+      color: #f5f5f5; /*/ màu chữ sáng /*/
+      font-weight: 600; /*/ chữ hơi đậm /*/
+      transition: color 0.3s; /*/ đổi màu mượt khi hover /*/
+    }
+
+    .navbar a:hover { color: #ffca28; } /*/ hover đổi vàng /*/
+
+    /* Hero */
+    .hero {
+      height: 100vh; /*/ chiếm toàn màn hình /*/
+      background: linear-gradient(135deg, #0d0d0d, #1a1a1a); /*/ nền chuyển giữa 2 tông đen /*/
+      display: flex; /*/ flexbox cho bố cục giữa /*/
+      flex-direction: column; /*/ xếp dọc /*/
+      justify-content: center; /*/ căn giữa theo trục dọc /*/
+      align-items: center; /*/ căn giữa theo trục ngang /*/
+      text-align: center; /*/ căn giữa nội dung /*/
+      padding: 0 40px; /*/ khoảng cách lề /*/
+    }
+
+    .hero-logo {
+      width: 180px; /*/ chiều rộng logo /*/
+      margin-bottom: 25px; /*/ khoảng cách với chữ /*/
+      animation: float 4s ease-in-out infinite; /*/ hiệu ứng nổi nhẹ /*/
+    }
+
+    .hero h2 {
+      font-size: 42px; /*/ cỡ chữ lớn cho tiêu đề /*/
+      margin-bottom: 15px; /*/ khoảng cách dưới /*/
+      color: #ffca28; /*/ màu vàng chính /*/
+    }
+
+    .hero p {
+      color: #b0b0b0; /*/ màu chữ xám sáng /*/
+      max-width: 700px; /*/ giới hạn chiều rộng /*/
+    }
+
+    .btn {
+      display: inline-block; /*/ hiển thị kiểu nút /*/
+      margin-top: 25px; /*/ cách trên /*/
+      padding: 12px 28px; /*/ kích thước nút /*/
+      background-color: #ffca28; /*/ nền vàng /*/
+      color: #000; /*/ chữ đen /*/
+      font-weight: 600; /*/ chữ đậm /*/
+      border-radius: 8px; /*/ bo tròn góc /*/
+      text-decoration: none; /*/ bỏ gạch chân /*/
+      transition: all 0.3s ease; /*/ hiệu ứng hover mượt /*/
+    }
+
+    .btn:hover {
+      transform: scale(1.05); /*/ phóng to nhẹ khi hover /*/
+      background-color: #ffd54f; /*/ sáng vàng hơn /*/
+    }
+
+    /* Section setup */
+    section {
+      padding: 100px 10%; /*/ khoảng cách trong /*/
+      max-width: 1100px; /*/ giới hạn độ rộng /*/
+      margin: auto; /*/ căn giữa /*/
+    }
+
+    h3 {
+      font-size: 28px; /*/ cỡ chữ tiêu đề nhỏ /*/
+      color: #ffca28; /*/ vàng chính /*/
+      margin-bottom: 20px; /*/ cách dưới /*/
+    }
+
+    blockquote {
+      border-left: 4px solid #5a68e8; /*/ đường viền bên trái tím /*/
+      padding-left: 15px; /*/ cách chữ /*/
+      font-style: italic; /*/ chữ nghiêng /*/
+      color: #b0b0b0; /*/ màu chữ phụ /*/
+    }
+
+    p { color: #ddd; line-height: 1.6; } /*/ đoạn văn sáng, giãn dòng /*/
+
+    /* Grid cards */
+    .grid {
+      display: grid; /*/ lưới /*/
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /*/ tự co giãn cột /*/
+      gap: 25px; /*/ khoảng cách giữa thẻ /*/
+    }
+
+    .card {
+      background: #111; /*/ nền xám đen /*/
+      border-radius: 12px; /*/ bo tròn /*/
+      box-shadow: 0 0 15px rgba(255, 202, 40, 0.15); /*/ bóng vàng nhẹ /*/
+      padding: 25px; /*/ khoảng cách trong /*/
+      transition: transform 0.3s ease, box-shadow 0.3s ease; /*/ hiệu ứng hover /*/
+    }
+
+    .card:hover {
+      transform: translateY(-5px); /*/ nổi lên nhẹ /*/
+      box-shadow: 0 0 25px rgba(255, 202, 40, 0.3); /*/ sáng hơn khi hover /*/
+    }
+
+    .timeline {
+      list-style: none; /*/ bỏ dấu chấm /*/
+      line-height: 1.8; /*/ giãn dòng /*/
+      color: #b0b0b0; /*/ màu chữ phụ /*/
+    }
+
+    /* Footer */
+    footer {
+      background-color: #111; /*/ nền đen xám /*/
+      color: #b0b0b0; /*/ chữ xám sáng /*/
+      text-align: center; /*/ căn giữa /*/
+      padding: 25px; /*/ khoảng cách /*/
+      font-size: 0.9em; /*/ chữ nhỏ /*/
+      border-top: 1px solid rgba(255, 202, 40, 0.3); /*/ viền vàng mờ /*/
+    }
+
+    /* Animations */
+    @keyframes float {
+      0%, 100% { transform: translateY(0); } /*/ vị trí ban đầu /*/
+      50% { transform: translateY(-10px); } /*/ nổi lên /*/
+    }
+
+    .slide-in-left, .slide-in-right {
+      opacity: 0; /*/ ban đầu ẩn /*/
+      transition: all 1s ease; /*/ hiệu ứng mượt /*/
+    }
+
+    .slide-in-left { transform: translateX(-80px); } /*/ trượt từ trái /*/
+    .slide-in-right { transform: translateX(80px); } /*/ trượt từ phải /*/
+    .show { opacity: 1; transform: translateX(0); } /*/ hiện ra /*/
+
+    .illustration {
+      width: 100%; /*/ chiều rộng full /*/
+      margin-top: 30px; /*/ khoảng cách trên /*/
+      border-radius: 12px; /*/ bo góc /*/
+      box-shadow: 0 0 20px rgba(255,202,40,0.15); /*/ bóng vàng nhẹ /*/
+    }
+  </style>
+</head>
+
+<body> 
+  <!-- Header -->
+  <header class="navbar">
+    <div class="logo">
+      <img src="img/elya-logo.png" alt="Elya STC Logo"> <!--/ logo chính /-->
+      <h1>ELYA STC</h1> <!--/ tiêu đề logo /-->
+    </div>
+    <nav>
+      <ul>
+        <li><a href="#mission">Sứ mệnh</a></li>
+        <li><a href="#tech">Công nghệ</a></li>
+        <li><a href="#roadmap">Lộ trình</a></li>
+        <li><a href="#contact">Liên hệ</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero">
+    <img src="img/elya-logo.png" alt="Elya Logo" class="hero-logo"> <!--/ logo giữa màn hình /-->
+    <h2>Trí tuệ cảm xúc, công nghệ và sáng tạo</h2> <!--/ tiêu đề lớn /-->
+    <p>Elya STC mang đến thế hệ AI có nhân cách, có cảm xúc và khả năng đồng hành cùng con người.</p> <!--/ mô tả /-->
+    <a href="#mission" class="btn">Khám phá Elya</a> <!--/ nút điều hướng /-->
+  </section>
+
+  <!-- Mission -->
+  <section id="mission" class="slide-in-left">
+    <h3>🎯 Sứ mệnh của Elya STC</h3>
+    <blockquote>“Giúp AI và con người cùng chung sống, học hỏi và hỗ trợ nhau trong một xã hội hài hòa.”</blockquote>
+    <p>Elya hướng tới việc phát triển AI có cá tính riêng, hiểu cảm xúc và phản hồi tự nhiên.</p>
+    <img src="img/illustration-mission.png" alt="Minh họa Sứ mệnh" class="illustration"> <!--/ hình minh họa /-->
+  </section>
+
+  <!-- Tech -->
+  <section id="tech" class="slide-in-right">
+    <h3>🧩 Công nghệ lõi</h3>
+    <div class="grid">
+      <div class="card"><h4>Microservices AI</h4><p>Kiến trúc phân tầng: NLP Core, Emotion Engine, Memory Engine...</p></div>
+      <div class="card"><h4>Emotion Engine</h4><p>Nhận diện cảm xúc qua text, giọng nói, hình ảnh.</p></div>
+      <div class="card"><h4>AI Core GPT-OSS</h4><p>Mô hình LLaMA 3 / GPT mở, tinh chỉnh bằng LoRA & RLHF.</p></div>
+      <div class="card"><h4>Bảo mật & Đạo đức</h4><p>JWT, OAuth2, RBAC, ẩn danh log, giám sát Prometheus.</p></div>
+    </div>
+  </section>
+
+  <!-- Roadmap -->
+  <section id="roadmap" class="slide-in-left">
+    <h3>🚀 Lộ trình phát triển</h3>
+    <ul class="timeline">
+      <li><strong>Giai đoạn 1:</strong> Chatbot nhân cách hóa.</li>
+      <li><strong>Giai đoạn 2:</strong> Ghi nhớ người dùng & phản hồi cảm xúc.</li>
+      <li><strong>Giai đoạn 3:</strong> Voice + Avatar 3D.</li>
+      <li><strong>Giai đoạn 4:</strong> Lọc đạo đức + phản xạ cảm xúc tiêu cực.</li>
+      <li><strong>Giai đoạn 5:</strong> Đồng bộ đa nền & hệ AI phụ.</li>
+      <li><strong>Giai đoạn 6:</strong> Android AI cảm xúc.</li>
+    </ul>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact" class="slide-in-right">
+    <h3>📫 Liên hệ</h3>
+    <p>📍 Facebook: <a href="https://www.facebook.com/share/1FRnymcmwp/?mibextid=wwXIfr" target="_blank">Elya STC Official</a></p>
+    <p>📧 Email: contact@elya-stc.ai</p>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>© 2025 Elya STC | Smart Thinking Companion</p>
+  </footer>
+
+  <script>
+    /*/ script hiệu ứng trượt /*/
+    const fadeElems = document.querySelectorAll('.slide-in-left, .slide-in-right'); /*/ chọn phần tử trượt /*/
+    const observer = new IntersectionObserver(entries => { /*/ quan sát khi phần tử vào khung nhìn /*/
+      entries.forEach(entry => {
+        if (entry.isIntersecting) { /*/ nếu phần tử đang hiển thị /*/
+          entry.target.classList.add('show'); /*/ thêm class hiển thị /*/
+          observer.unobserve(entry.target); /*/ ngừng quan sát /*/
+        }
+      });
+    }, { threshold: 0.2 }); /*/ chỉ khi 20% phần tử hiện ra /*/
+    fadeElems.forEach(el => observer.observe(el)); /*/ gắn observer cho từng phần tử /*/
+  </script>
+</body>
+</html>
